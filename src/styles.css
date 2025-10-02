@@ -1,0 +1,16 @@
+.scrollable {
+    scrollbar-width: auto; 
+    scrollbar-color: #383530 #BC936F; 
+}
+.scrollable-admin{
+    scrollbar-width: auto; 
+    scrollbar-color: #383530 #CCC8BC; 
+}
+.scrollable-add-models {
+    scrollbar-width: auto; 
+    scrollbar-color: #383530 #C4B7A6; 
+}
+.scrollable-models-list {
+    scrollbar-width: auto; 
+    scrollbar-color: #383530 #DCDCDC; 
+}

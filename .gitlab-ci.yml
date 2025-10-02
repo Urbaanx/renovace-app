@@ -1,0 +1,20 @@
+docker_build:
+  stage: build
+  script:
+    - mv .env.ais .env.local
+    - docker build -t docker.ais.pl/renovace-app:${CI_PIPELINE_ID} .
+    - docker push docker.ais.pl/renovace-app:${CI_PIPELINE_ID}
+
+deploy_to_prod:
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - docker pull docker.ais.pl/renovace-app:${CI_PIPELINE_ID}
+    - ssh root@web.hq.ais.pl docker service update -q --force --with-registry-auth --image docker.ais.pl/renovace-app:${CI_PIPELINE_ID} renovace-app
+  environment:
+    name: prod
+    url: https://renovace.ais.pl/
+  when: manual
+  stage: deploy
+  dependencies:
+    - docker_build
